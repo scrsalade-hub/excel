@@ -1,17 +1,16 @@
 const QuizSession = require('../models/QuizSession');
 const QuizQuestion = require('../models/QuizQuestion');
 const User = require('../models/User');
-const UploadedPDF = require('../models/UploadedPDF');
+const PDFCloud = require('../models/PDFCloud');
 const { generateQuizQuestions, generateExplanation } = require('../utils/geminiService');
 
 // ─── Get available topics from user's uploaded materials ───
 exports.getStudyTopics = async (req, res) => {
   try {
-    const pdfs = await UploadedPDF.find({
+    const pdfs = await PDFCloud.find({
       user: req.userId,
       status: 'processed',
-      extractedText: { $exists: true, $ne: '' }
-    }).select('originalName extractedText topics summary questionCount filePath fileType fileSize');
+    }).select('originalName extractedText topics summary questionCount cloudinaryUrl fileType fileSize');
 
     if (!pdfs || pdfs.length === 0) {
       return res.status(404).json({
@@ -71,7 +70,7 @@ exports.createSession = async (req, res) => {
     const user = await User.findById(req.userId);
 
     // Fetch user's processed materials
-    const pdfs = await UploadedPDF.find({
+    const pdfs = await PDFCloud.find({
       user: req.userId,
       status: 'processed',
       extractedText: { $exists: true, $ne: '' }
@@ -162,7 +161,7 @@ exports.generateNewSet = async (req, res) => {
     }
 
     // Fetch user's processed materials
-    const pdfs = await UploadedPDF.find({
+    const pdfs = await PDFCloud.find({
       user: req.userId,
       status: 'processed',
       extractedText: { $exists: true, $ne: '' }

@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const QuizSession = require('../models/QuizSession');
-const UploadedPDF = require('../models/UploadedPDF');
+const PDFCloud = require('../models/PDFCloud');
 const PerformanceAnalytics = require('../models/PerformanceAnalytics');
 
 exports.getDashboardStats = async (req, res) => {
@@ -14,7 +14,7 @@ exports.getDashboardStats = async (req, res) => {
       .limit(5)
       .select('title type score createdAt status');
 
-    const pdfs = await UploadedPDF.find({ user: req.userId })
+    const pdfs = await PDFCloud.find({ user: req.userId })
       .sort({ createdAt: -1 })
       .limit(5)
       .select('originalName fileSize status createdAt topics');

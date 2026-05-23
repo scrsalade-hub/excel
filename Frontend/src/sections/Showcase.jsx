@@ -37,7 +37,7 @@ export default function Showcase() {
               {/* Dashboard Content */}
               <div className="p-8 bg-[#0E0E0E]">
                 {/* Stats */}
-                <div className="grid sm-grid-cols-3 grid-cols-2 gap-5 mb-8">
+                <div className="grid grid-cols-3 gap-5 mb-8">
                   {[
                     { label: "Exam Readiness", value: "87%", icon: Award, color: "#DC2626", bg: "rgba(220,38,38,0.1)" },
                     { label: "Study Streak", value: "12 days", icon: Zap, color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
@@ -45,7 +45,7 @@ export default function Showcase() {
                   ].map((stat) => (
                     <div key={stat.label} className="bg-[#141414] rounded-xl p-6 border border-[#2A2A2A]">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-9 h-9 rounded-lg flex items-center justify-center p-1" style={{ background: stat.bg }}>
+                        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: stat.bg }}>
                           <stat.icon size={18} style={{ color: stat.color }} strokeWidth={1.5} />
                         </div>
                         <span className="text-xs text-[#525252] font-medium">{stat.label}</span>
@@ -63,11 +63,11 @@ export default function Showcase() {
                       <p className="text-xs text-[#525252] mt-1">Start learning in one click</p>
                     </div>
                     <div className="flex items-center gap-2 px-3 py-1.5 bg-[#DC2626]/10 rounded-full">
-                      <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" />
-                      <span className="text-xs font-sm text-[#DC2626]">AI</span>
+                      <div className="w-1.5 h-1.5 bg-[#10B981] rounded-full animate-pulse" />
+                      <span className="text-xs font-medium text-[#DC2626]">AI Ready</span>
                     </div>
                   </div>
-                  <div className="grid sm-grid-cols-3 grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     {[
                       { label: "Study Session", icon: BookOpen, desc: "Practice quizzes" },
                       { label: "Upload Materials", icon: Upload, desc: "PDF or PPTX" },

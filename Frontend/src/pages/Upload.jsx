@@ -160,7 +160,7 @@ export default function UploadPage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-[#171717]">{m.name}</p>
-                  <p className="text-xs text-[#737373]">{m.size} {m.topics > 0 && `\u00B7 ${m.topics} topics`} {m.status && `\u00B7 ${m.status}`}</p>
+                  <p className="text-xs text-[#737373]">{m.size} {Array.isArray(m.topics) && m.topics.length > 0 && `\u00B7 ${m.topics.length} topics`} {m.status && `\u00B7 ${m.status}`}</p>
                 </div>
               </div>
               <button onClick={() => del(m.id)} className="p-2.5 hover:bg-[#FEF2F2] rounded-xl transition-colors group">

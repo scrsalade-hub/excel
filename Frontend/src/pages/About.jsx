@@ -12,12 +12,12 @@ const values = [
   { icon: Heart, title: "Passion for Learning", desc: "We believe education transforms lives. Our mission is to make effective study tools accessible to everyone." },
 ];
 
-// const team = [
-//   { name: "Alex Rivera", role: "CEO & Co-founder", color: "from-[#DC2626] to-[#EF4444]" },
-//   { name: "Jordan Lee", role: "CTO & Co-founder", color: "from-[#F59E0B] to-[#FBBF24]" },
-//   { name: "Priya Sharma", role: "Head of AI", color: "from-[#10B981] to-[#34D399]" },
-//   { name: "Noah Kim", role: "Lead Designer", color: "from-[#8B5CF6] to-[#A78BFA]" },
-// ];
+const team = [
+  { name: "Alex Rivera", role: "CEO & Co-founder", color: "from-[#DC2626] to-[#EF4444]" },
+  { name: "Jordan Lee", role: "CTO & Co-founder", color: "from-[#F59E0B] to-[#FBBF24]" },
+  { name: "Priya Sharma", role: "Head of AI", color: "from-[#10B981] to-[#34D399]" },
+  { name: "Noah Kim", role: "Lead Designer", color: "from-[#8B5CF6] to-[#A78BFA]" },
+];
 
 export default function About() {
   return (
@@ -66,10 +66,10 @@ export default function About() {
               <div className="bg-[#FAFAFA] rounded-2xl p-10 border border-[#E5E5E5]">
                 <div className="grid grid-cols-2 gap-8">
                   {[
-                    { value: "2025", label: "Founded" },
+                    { value: "2024", label: "Founded" },
                     { value: "2,000+", label: "Students" },
                     { value: "50K+", label: "Quizzes" },
-                    // { value: "12", label: "Team Members" },
+                    { value: "12", label: "Team Members" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center">
                       <p className="text-3xl font-bold text-[#DC2626] mb-1">{stat.value}</p>
@@ -113,7 +113,7 @@ export default function About() {
       </section>
 
       {/* Team */}
-      {/* <section className="py-24 sm:py-32">
+      <section className="py-24 sm:py-32">
         <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
             <Reveal><span className="inline-flex items-center px-5 py-2 bg-[#FEF2F2] text-[#DC2626] text-xs font-semibold uppercase tracking-widest rounded-full mb-6">Team</span></Reveal>
@@ -136,7 +136,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       <Footer />
     </div>

@@ -50,10 +50,10 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} className="flex items-center justify-center gap-5 sm:gap-24">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} className="flex items-center justify-center gap-20 sm:gap-24">
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <p className="text-3xl sm:text-4xl text-2xl font-bold text-white mb-2">{stat.value}</p>
+                <p className="text-3xl sm:text-4xl font-bold text-white mb-2">{stat.value}</p>
                 <p className="text-xs text-[#737373] uppercase tracking-widest">{stat.label}</p>
               </div>
             ))}
