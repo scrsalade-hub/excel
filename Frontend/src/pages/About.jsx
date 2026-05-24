@@ -52,7 +52,7 @@ function TeamSlideshow() {
     const timer = setInterval(() => {
       setDirection(1);
       setActive((p) => (p + 1) % team.length);
-    }, 3500);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
