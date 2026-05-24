@@ -23,6 +23,19 @@ function WaveDivider() {
   );
 }
 
+function DotGrid() {
+  return (
+    <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dotGridReg" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="#171717" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dotGridReg)" />
+    </svg>
+  );
+}
+
 export default function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -83,17 +96,38 @@ export default function Register() {
       </div>
 
       {/* Right Form */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-[#FAFAFA]">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="w-full max-w-[420px]">
-          <div className="lg:hidden mb-10 flex items-center gap-3"><Logo size={32} /></div>
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-[#FAFAFA] relative overflow-hidden">
+        {/* Mobile SVG decorations */}
+        <div className="lg:hidden absolute inset-0 pointer-events-none overflow-hidden">
+          <DotGrid />
+          <SoftBlob className="absolute -top-16 -right-16 w-[200px] h-[200px] text-[#DC2626]/[0.04]" />
+          <SoftBlob className="absolute bottom-10 -left-10 w-[150px] h-[150px] text-[#DC2626]/[0.03]" style={{ transform: "rotate(180deg)" }} />
+          <div className="absolute top-20 right-10 w-3 h-3 rounded-full bg-[#DC2626]/10" />
+          <div className="absolute bottom-32 right-20 w-2 h-2 rounded-full bg-[#DC2626]/8" />
+          <div className="absolute top-1/3 right-[5%] w-[250px] h-[250px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(220,38,38,0.04) 0%, transparent 60%)", filter: "blur(60px)" }} />
+        </div>
 
-          <div className="flex gap-2 mb-8">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="w-full max-w-[420px] relative z-10">
+          <div className="lg:hidden mb-8 flex items-center gap-3"><Logo size={32} /></div>
+
+          {/* Mobile welcome text */}
+          <div className="lg:hidden mb-8">
+            <h2 className="text-3xl font-bold text-[#171717] tracking-tight">Start <span className="text-[#DC2626]">Learning.</span></h2>
+          </div>
+
+          <div className="hidden lg:block flex gap-2 mb-8">
             <div className={`h-1.5 flex-1 rounded-full transition-all ${step >= 1 ? "bg-[#DC2626]" : "bg-[#E5E5E5]"}`} />
             <div className={`h-1.5 flex-1 rounded-full transition-all ${step >= 2 ? "bg-[#DC2626]" : "bg-[#E5E5E5]"}`} />
           </div>
 
-          <h1 className="text-2xl font-bold text-[#171717] mb-1 tracking-tight">{step === 1 ? "Create account" : "Confirm details"}</h1>
-          <p className="text-[#737373] text-sm mb-10">{step === 1 ? "Start your learning journey today." : "Review and create your account."}</p>
+          {/* Mobile progress dots */}
+          <div className="lg:hidden flex gap-2 mb-6">
+            <div className={`h-2 flex-1 rounded-full transition-all ${step >= 1 ? "bg-[#DC2626]" : "bg-[#E5E5E5]"}`} />
+            <div className={`h-2 flex-1 rounded-full transition-all ${step >= 2 ? "bg-[#DC2626]" : "bg-[#E5E5E5]"}`} />
+          </div>
+
+          <h1 className="hidden lg:block text-2xl font-bold text-[#171717] mb-1 tracking-tight">{step === 1 ? "Create account" : "Confirm details"}</h1>
+          <p className="hidden lg:block text-[#737373] text-sm mb-10">{step === 1 ? "Start your learning journey today." : "Review and create your account."}</p>
 
           {error && <div className="bg-[#FEF2F2] text-[#DC2626] text-sm px-5 py-3.5 rounded-2xl mb-6 border border-[#DC2626]/10">{error}</div>}
 

@@ -10,7 +10,7 @@ const plans = [
   },
   {
     name: "Pro", price: "$9.99", period: "/month", desc: "Most popular",
-    features: ["Unlimited uploads", "30 questions per quiz", "Advanced analytics", "Priority support", "Exam simulation", "No repetition AI"],
+    features: ["Unlimited uploads", "30 questions per quiz", "Advanced analytics", "Priority support", "Exam simulation", "AI repetition prevention"],
     highlighted: true,
   },
   {
@@ -31,7 +31,7 @@ export default function PricingSection() {
           </Reveal>
         </div>
 
-        <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto items-start">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-[1000px] mx-auto items-start">
           {plans.map((plan, i) => (
             <StaggerItem key={i}>
               <div className={`relative rounded-2xl p-8 h-full ${plan.highlighted ? "bg-[#0A0A0A] border-2 border-[#DC2626] shadow-2xl shadow-[#DC2626]/15" : "bg-white border border-[#E5E5E5]"}`}>

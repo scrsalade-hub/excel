@@ -4,9 +4,9 @@ import { ArrowRight, Play } from "lucide-react";
 import FloatingBlobs from "@/components/effects/FloatingBlobs";
 
 const stats = [
-  { value: "2,000+", label: "Students" },
-  { value: "50K+", label: "Quizzes Generated" },
-  { value: "94%", label: "Avg Improvement" },
+  { value: "60+", label: "Students" },
+  { value: "1,200+", label: "Quizzes Taken" },
+  { value: "94%", label: "Pass Rate" },
 ];
 
 export default function Hero() {
@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="flex flex-col items-center text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mb-10">
             <span className="inline-flex items-center px-5 py-2 bg-[#FEF2F2] text-[#DC2626] text-xs font-semibold uppercase tracking-widest rounded-full">
-              AI-Powered Exam Preparation
+              AI-Powered Exam Prep
             </span>
           </motion.div>
 
@@ -38,7 +38,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="text-lg sm:text-xl text-[#A3A3A3] max-w-[560px] mb-12 leading-relaxed">
-            Upload your materials. Our AI generates personalized quizzes directly from your content. No generic questions. Just targeted learning.
+            Upload your course materials. Our AI reads them and generates personalized quizzes directly from your content. No generic questions. Just targeted learning.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} className="flex flex-col sm:flex-row items-center gap-5 mb-20">
@@ -50,11 +50,11 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} className="flex items-center justify-center gap-20 sm:gap-24">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }} className="flex items-center justify-center gap-6 sm:gap-16 lg:gap-24">
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <p className="text-3xl sm:text-4xl font-bold text-white mb-2">{stat.value}</p>
-                <p className="text-xs text-[#737373] uppercase tracking-widest">{stat.label}</p>
+                <p className="text-2xl sm:text-4xl font-bold text-white mb-2">{stat.value}</p>
+                <p className="text-[10px] sm:text-xs text-[#737373] uppercase tracking-widest">{stat.label}</p>
               </div>
             ))}
           </motion.div>

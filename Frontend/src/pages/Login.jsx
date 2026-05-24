@@ -23,6 +23,19 @@ function WaveDivider() {
   );
 }
 
+function DotGrid() {
+  return (
+    <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="#171717" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dotGrid)" />
+    </svg>
+  );
+}
+
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -51,36 +64,21 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex bg-[#FAFAFA]">
-      {/* Left Panel */}
+      {/* Left Panel - hidden on mobile */}
       <div className="hidden lg:flex lg:w-[48%] xl:w-[45%] bg-[#0A0A0A] relative overflow-hidden items-center justify-center">
-        {/* Dot grid */}
         <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-
-        {/* Soft organic blobs */}
         <SoftBlob className="absolute -top-20 -left-16 w-[320px] h-[320px] text-[#DC2626]/[0.07]" />
         <SoftBlob className="absolute bottom-10 left-10 w-[200px] h-[200px] text-[#DC2626]/[0.05]" style={{ transform: "rotate(120deg)" }} />
         <SoftBlob className="absolute top-1/3 right-0 w-[180px] h-[180px] text-[#DC2626]/[0.04]" style={{ transform: "rotate(240deg)" }} />
-
-        {/* Large decorative circle */}
         <div className="absolute bottom-[15%] right-[20%] w-[140px] h-[140px] rounded-full border border-[#DC2626]/[0.08]" />
         <div className="absolute top-[18%] right-[30%] w-[80px] h-[80px] rounded-full border border-[#DC2626]/[0.06]" />
-
-        {/* Small dots */}
         <div className="absolute top-[25%] left-[15%] w-2 h-2 rounded-full bg-[#DC2626]/20" />
         <div className="absolute bottom-[35%] right-[25%] w-1.5 h-1.5 rounded-full bg-[#DC2626]/15" />
         <div className="absolute top-[60%] left-[25%] w-1 h-1 rounded-full bg-[#DC2626]/10" />
-
-        {/* Central glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(220,38,38,0.06) 0%, transparent 60%)", filter: "blur(80px)" }} />
-
-        {/* Wave divider */}
         <WaveDivider />
-
-        {/* Content */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative z-20 max-w-[380px] px-8">
-          <div className="mb-10">
-            <Logo textClassName="text-white" size={32} />
-          </div>
+          <div className="mb-10"><Logo textClassName="text-white" size={32} /></div>
           <h2 className="text-5xl font-bold text-white mb-4 tracking-tight">Welcome</h2>
           <h2 className="text-5xl font-bold bg-gradient-to-br from-[#DC2626] to-[#EF4444] bg-clip-text text-transparent mb-6 tracking-tight">Back.</h2>
           <p className="text-[#A3A3A3] text-base leading-relaxed">
@@ -94,14 +92,29 @@ export default function Login() {
       </div>
 
       {/* Right Form */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-[#FAFAFA]">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="w-full max-w-[420px]">
-          <div className="lg:hidden mb-10 flex items-center gap-3">
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-[#FAFAFA] relative overflow-hidden">
+        {/* Mobile SVG decorations */}
+        <div className="lg:hidden absolute inset-0 pointer-events-none overflow-hidden">
+          <DotGrid />
+          <SoftBlob className="absolute -top-16 -right-16 w-[200px] h-[200px] text-[#DC2626]/[0.04]" />
+          <SoftBlob className="absolute bottom-10 -left-10 w-[150px] h-[150px] text-[#DC2626]/[0.03]" style={{ transform: "rotate(180deg)" }} />
+          <div className="absolute top-20 right-10 w-3 h-3 rounded-full bg-[#DC2626]/10" />
+          <div className="absolute bottom-32 right-20 w-2 h-2 rounded-full bg-[#DC2626]/8" />
+          <div className="absolute top-1/3 right-[5%] w-[250px] h-[250px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(220,38,38,0.04) 0%, transparent 60%)", filter: "blur(60px)" }} />
+        </div>
+
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="w-full max-w-[420px] relative z-10">
+          <div className="lg:hidden mb-8 flex items-center gap-3">
             <Logo size={32} />
           </div>
 
-          <h1 className="text-2xl font-bold text-[#171717] mb-1 tracking-tight">Sign in</h1>
-          <p className="text-[#737373] text-sm mb-10">Log in to your account to continue</p>
+          {/* Mobile welcome text */}
+          <div className="lg:hidden mb-8">
+            <h2 className="text-3xl font-bold text-[#171717] tracking-tight">Welcome <span className="text-[#DC2626]">Back.</span></h2>
+          </div>
+
+          <h1 className="hidden lg:block text-2xl font-bold text-[#171717] mb-1 tracking-tight">Sign in</h1>
+          <p className="hidden lg:block text-[#737373] text-sm mb-10">Log in to your account to continue</p>
 
           {error && (
             <div className="bg-[#FEF2F2] text-[#DC2626] text-sm px-5 py-3.5 rounded-2xl mb-6 border border-[#DC2626]/10">

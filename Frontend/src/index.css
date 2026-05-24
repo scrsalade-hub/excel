@@ -42,3 +42,15 @@ body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #DC2626; }
+
+/* Infinite scroll marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

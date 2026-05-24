@@ -1,35 +1,47 @@
-import Reveal from "@/components/effects/Reveal";
-
-const universities = [
-  { name: "Harvard", abbr: "H" },
-  { name: "MIT", abbr: "M" },
-  { name: "Stanford", abbr: "S" },
-  { name: "Yale", abbr: "Y" },
-  { name: "Princeton", abbr: "P" },
-  { name: "Caltech", abbr: "C" },
-  { name: "Oxford", abbr: "O" },
-  { name: "Cambridge", abbr: "C" },
+const brands = [
+  "Harvard", "Stanford", "MIT", "Oxford", "Yale", "Cambridge",
+  "Imperial", "ETH Zurich", "Princeton", "Caltech", "Columbia", "Chicago",
 ];
+
+function BrandRow() {
+  return (
+    <>
+      {brands.map((name) => (
+        <span
+          key={name}
+          className="inline-block mx-8 sm:mx-12 text-[#A3A3A3] hover:text-[#525252] transition-colors duration-300 whitespace-nowrap"
+          style={{
+            fontFamily: "Inter, system-ui, sans-serif",
+            fontSize: "1.25rem",
+            fontWeight: 800,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {name}
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function TrustedBy() {
   return (
-    <section className="bg-[#F5F5F5] py-24 border-y border-[#E5E5E5]">
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
-        <Reveal>
-          <p className="text-center text-sm font-medium text-[#737373] mb-12 tracking-wide">
-            Trusted by students at leading institutions worldwide
-          </p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-8">
-            {universities.map((u) => (
-              <div key={u.name} className="flex items-center gap-3 px-6 py-3 bg-white rounded-xl border border-[#E5E5E5] hover:border-[#DC2626]/20 hover:shadow-lg transition-all duration-300 cursor-default">
-                <div className="w-9 h-9 rounded-lg bg-[#F5F5F5] flex items-center justify-center text-sm font-bold text-[#525252]">{u.abbr}</div>
-                <span className="text-sm font-semibold text-[#525252]">{u.name}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+    <section className="bg-[#F5F5F5] py-16 border-y border-[#E5E5E5] overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12 mb-8">
+        <p className="text-center text-sm font-medium text-[#737373] tracking-wide">
+          Trusted by students at leading institutions worldwide
+        </p>
+      </div>
+
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#F5F5F5] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#F5F5F5] to-transparent z-10 pointer-events-none" />
+
+        <div className="flex animate-marquee whitespace-nowrap items-center">
+          <BrandRow />
+          <BrandRow />
+          <BrandRow />
+        </div>
       </div>
     </section>
   );

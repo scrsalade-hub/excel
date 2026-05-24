@@ -69,7 +69,7 @@ export default function Dashboard() {
         <p className="text-[#737373] text-base">Welcome back! Here&apos;s your learning overview.</p>
       </div>
 
-      <div className="grid sm:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-10">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
@@ -97,7 +97,7 @@ export default function Dashboard() {
             <span className="text-xs font-semibold text-[#DC2626]">AI Ready</span>
           </div>
         </div>
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
           {quickActions.map((action) => (
             <Link key={action.label} to={action.href} className="bg-[#FAFAFA] rounded-xl p-6 border border-[#E5E5E5] hover:border-[#DC2626]/30 hover:bg-white hover:shadow-lg transition-all group">
               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#FEF2F2] transition-colors border border-[#E5E5E5]">

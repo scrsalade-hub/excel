@@ -7,14 +7,14 @@ import Reveal from "@/components/effects/Reveal";
 import StaggerContainer, { StaggerItem } from "@/components/effects/StaggerContainer";
 
 const allFeatures = [
-  { icon: Upload, title: "Direct PDF to AI", desc: "Upload PDFs straight to Gemini AI. No text extraction needed. The AI reads your document natively and understands the content, structure, and context.", color: "#DC2626", bg: "#FEF2F2" },
+  { icon: Upload, title: "Direct Upload", desc: "Upload PDFs and PowerPoint files. Our AI reads and understands your content directly — no manual work needed.", color: "#DC2626", bg: "#FEF2F2" },
   { icon: FileText, title: "PPTX Support", desc: "Upload PowerPoint files directly. No conversion needed. Text is extracted from every slide, including speaker notes and embedded content.", color: "#F59E0B", bg: "#FFFBEB" },
   { icon: Brain, title: "Adaptive Quizzes", desc: "Questions generated from YOUR materials, not random internet trivia. Every question is contextually relevant to what you are studying.", color: "#10B981", bg: "#ECFDF5" },
-  { icon: RefreshCw, title: "No Repetition", desc: "AI tracks every question asked across all sessions. Each new set is completely unique. Never see the same question twice.", color: "#DC2626", bg: "#FEF2F2" },
+  { icon: RefreshCw, title: "No Repetition", desc: "Our AI tracks every question asked across all sessions. Each new quiz is completely unique. Never see the same question twice.", color: "#DC2626", bg: "#FEF2F2" },
   { icon: Timer, title: "Exam Simulation", desc: "Full mock exams with realistic timing, scoring, and review. Prepare under exam conditions to reduce anxiety and improve performance.", color: "#8B5CF6", bg: "#F5F3FF" },
   { icon: BarChart3, title: "Deep Analytics", desc: "Track mastery scores, study streaks, and weak topics. Visualize your progress over time with beautiful, actionable charts.", color: "#10B981", bg: "#ECFDF5" },
-  { icon: Zap, title: "Instant Feedback", desc: "Get immediate explanations for every answer. Understand why you got it right or wrong with detailed reasoning from AI.", color: "#F59E0B", bg: "#FFFBEB" },
-  { icon: Target, title: "Topic Selection", desc: "Choose which topics to focus on. The AI detects all topics in your materials and lets you create targeted study sessions.", color: "#8B5CF6", bg: "#F5F3FF" },
+  { icon: Zap, title: "Instant Feedback", desc: "Get immediate explanations for every answer. Understand why you got it right or wrong with detailed reasoning.", color: "#F59E0B", bg: "#FFFBEB" },
+  { icon: Target, title: "Topic Selection", desc: "Choose which topics to focus on. Our AI detects all topics in your materials so you can build targeted study sessions.", color: "#8B5CF6", bg: "#F5F3FF" },
   { icon: Shield, title: "Secure & Private", desc: "Your materials are encrypted and never shared. Your data belongs to you. We use industry-standard security practices.", color: "#DC2626", bg: "#FEF2F2" },
 ];
 
@@ -44,7 +44,7 @@ export default function FeaturesPage() {
 
       <section className="py-24 sm:py-32">
         <div className="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-12">
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {allFeatures.map((f, i) => {
               const Icon = f.icon;
               return (

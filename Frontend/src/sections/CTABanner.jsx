@@ -21,7 +21,7 @@ export default function CTABanner() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight leading-tight">Ready to ace your exams?</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl text-white/70 mb-12 max-w-[520px] leading-relaxed">Join thousands of students using AI to study smarter, not harder.</p>
+            <p className="text-lg sm:text-xl text-white/70 mb-12 max-w-[520px] leading-relaxed">Join students who use our AI to turn their course materials into personalized quizzes and study smarter.</p>
           </Reveal>
           <Reveal delay={0.2}>
             <div className="flex flex-col sm:flex-row items-center gap-5">

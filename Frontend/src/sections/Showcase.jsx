@@ -37,7 +37,7 @@ export default function Showcase() {
               {/* Dashboard Content */}
               <div className="p-8 bg-[#0E0E0E]">
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-5 mb-8">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5 mb-8">
                   {[
                     { label: "Exam Readiness", value: "87%", icon: Award, color: "#DC2626", bg: "rgba(220,38,38,0.1)" },
                     { label: "Study Streak", value: "12 days", icon: Zap, color: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
@@ -67,7 +67,7 @@ export default function Showcase() {
                       <span className="text-xs font-medium text-[#DC2626]">AI Ready</span>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                     {[
                       { label: "Study Session", icon: BookOpen, desc: "Practice quizzes" },
                       { label: "Upload Materials", icon: Upload, desc: "PDF or PPTX" },

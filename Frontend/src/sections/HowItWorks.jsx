@@ -4,7 +4,7 @@ import StaggerContainer, { StaggerItem } from "@/components/effects/StaggerConta
 
 const steps = [
   { num: "01", icon: Upload, title: "Upload", desc: "Drop your lecture slides, notes, or textbooks. We support PDF and PowerPoint files." },
-  { num: "02", icon: Brain, title: "Analyze", desc: "Our AI reads your materials directly and detects concepts, topics, and key learning areas." },
+  { num: "02", icon: Brain, title: "Analyze", desc: "Our AI reads your materials and detects key concepts, topics, and learning areas automatically." },
   { num: "03", icon: Target, title: "Master", desc: "Take dynamic quizzes generated from YOUR materials. Each question is unique and personalized." },
 ];
 
@@ -23,7 +23,7 @@ export default function HowItWorks() {
           </Reveal>
         </div>
 
-        <StaggerContainer className="grid md:grid-cols-3 gap-12 lg:gap-20">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-12 lg:gap-20">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
