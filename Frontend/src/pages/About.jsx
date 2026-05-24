@@ -18,7 +18,7 @@ const team = [
     name: "Abdur-Rahim Abdus-Salam",
     role: "Founder & CEO",
     image: "/team-rahim.png",
-    story: "I watched someone I care about stress over a 200-page PDF three days before a test. She was highlighting paragraphs, making notes on paper, and still felt lost. That is when it clicked: students do not need more study apps. They need a way to turn what they already have; lecture slides, textbooks, handouts into something active. Into questions. Into practice. Into confidence. I built Excel that weekend. Sixty students later, we are just getting started.",
+    story: "I watched someone I care about stress over a 200-page PDF three days before a test. She was highlighting paragraphs, making notes on paper, and still felt lost. That is when it clicked: students do not need more study apps. They need a way to turn what they already have; lecture slides, textbooks, handouts into something active. Into questions. Into practice. Into confidence. I started plannig Excel that weekend. Sixty students later, we are just getting started.",
   },
   {
     name: "Joyce Robson",
@@ -52,7 +52,7 @@ function TeamSlideshow() {
     const timer = setInterval(() => {
       setDirection(1);
       setActive((p) => (p + 1) % team.length);
-    }, 5500);
+    }, 8500);
     return () => clearInterval(timer);
   }, []);
 
