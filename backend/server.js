@@ -20,6 +20,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/upload', require('./routes/upload'));
 app.use('/api/quiz', require('./routes/quiz'));
 app.use('/api/dashboard', require('./routes/dashboard'));
+app.use('/api/password', require('./routes/password'));
 
 // Health
 app.get('/api/health', (req, res) => {
@@ -29,8 +30,24 @@ app.get('/api/health', (req, res) => {
     db: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
     cloudinary: process.env.CLOUDINARY_CLOUD_NAME ? 'configured' : 'missing',
     gemini: process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key_here' ? 'configured' : 'missing',
+    email: process.env.EMAIL_USER && process.env.EMAIL_PASS ? 'configured' : 'missing',
+    emailUser: process.env.EMAIL_USER || 'not set',
     timestamp: new Date().toISOString(),
   });
+});
+
+// Test email endpoint
+app.post('/api/test-email', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const { sendOTPEmail } = require('./utils/emailService');
+    const otp = '123456';
+    await sendOTPEmail(email || process.env.EMAIL_USER, otp);
+    res.json({ success: true, message: 'Test email sent. Check your inbox and server console.' });
+  } catch (err) {
+    console.error('[TEST-EMAIL] Failed:', err);
+    res.status(500).json({ success: false, message: err.message, code: err.code });
+  }
 });
 
 // 404

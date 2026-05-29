@@ -2,7 +2,17 @@ const QuizSession = require('../models/QuizSession');
 const QuizQuestion = require('../models/QuizQuestion');
 const User = require('../models/User');
 const PDFCloud = require('../models/PDFCloud');
-const { generateQuizQuestions, generateExplanation } = require('../utils/geminiService');
+const { generateQuizQuestions, generateExplanation, generateFlashcards: geminiGenerateFlashcards } = require('../utils/geminiService');
+
+// Helper: shuffle options so correct answer is never in the same position
+function shuffleOptions(questions) {
+  return questions.map(q => {
+    const correctText = q.options[q.correctAnswer];
+    const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+    const newCorrectIndex = shuffled.indexOf(correctText);
+    return { ...q, options: shuffled, correctAnswer: newCorrectIndex };
+  });
+}
 
 // ─── Get available topics from user's uploaded materials ───
 exports.getStudyTopics = async (req, res) => {
@@ -121,14 +131,17 @@ exports.createSession = async (req, res) => {
       seenQuestions: [], // New session = no seen questions yet
     });
 
+    // CRITICAL: Shuffle options so correct answer rotates randomly (A/B/C/D)
+    const shuffledQuestions = shuffleOptions(questions);
+
     const session = await QuizSession.create({
       user: req.userId,
       type: type || 'practice',
       title: sessionTitle,
       topic: topicString,
       difficulty: difficulty || user.difficulty,
-      totalQuestions: requestedCount, // Store the ACTUAL requested count
-      seenQuestions: questions.map(q => ({ questionText: q.question, topic: q.topic })),
+      totalQuestions: shuffledQuestions.length,
+      seenQuestions: shuffledQuestions.map(q => ({ questionText: q.question, topic: q.topic })),
     });
 
     res.status(201).json({
@@ -139,7 +152,7 @@ exports.createSession = async (req, res) => {
         difficulty: session.difficulty,
         totalQuestions: session.totalQuestions,
       },
-      questions,
+      questions: shuffledQuestions,
     });
   } catch (error) {
     console.error('Create session error:', error);
@@ -209,12 +222,15 @@ exports.generateNewSet = async (req, res) => {
       seenQuestions: seenQuestions.map(sq => sq.questionText),
     });
 
+    // Shuffle options so correct answer rotates randomly
+    const shuffledQuestions = shuffleOptions(questions);
+
     // Update session with newly seen questions
-    const newSeen = questions.map(q => ({ questionText: q.question, topic: q.topic }));
+    const newSeen = shuffledQuestions.map(q => ({ questionText: q.question, topic: q.topic }));
     session.seenQuestions = [...session.seenQuestions, ...newSeen];
     await session.save();
 
-    res.json({ questions });
+    res.json({ questions: shuffledQuestions });
   } catch (error) {
     console.error('Generate new set error:', error);
     const status = error.message?.includes('rate limit') ? 429 : 500;
@@ -344,3 +360,38 @@ async function generateSessionFeedback(session) {
   const { generateSessionFeedback: geminiFeedback } = require('../utils/geminiService');
   return await geminiFeedback(session);
 }
+
+// ─── Generate Flashcards from topic ───
+exports.generateFlashcards = async (req, res) => {
+  try {
+    const { topic } = req.body;
+    if (!topic) return res.status(400).json({ message: 'Topic is required' });
+
+    const pdfs = await PDFCloud.find({
+      user: req.userId,
+      status: 'processed',
+    }).select('originalName extractedText topics summary fileType');
+
+    if (!pdfs || pdfs.length === 0) {
+      return res.status(404).json({ message: 'No processed materials found.' });
+    }
+
+    let combinedText = '';
+    for (const pdf of pdfs) {
+      if (pdf.extractedText && pdf.extractedText !== '[PDF_DIRECT]') {
+        combinedText += '\n\n---\nSOURCE: ' + pdf.originalName + '\n' + pdf.extractedText;
+      }
+    }
+
+    const flashcards = await geminiGenerateFlashcards({
+      topic,
+      pdfContent: combinedText,
+      count: 10,
+    });
+
+    res.json({ flashcards });
+  } catch (error) {
+    console.error('Generate flashcards error:', error);
+    res.status(500).json({ message: error.message || 'Error generating flashcards' });
+  }
+};

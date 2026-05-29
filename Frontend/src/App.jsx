@@ -10,6 +10,8 @@ import UploadPage from "@/pages/Upload";
 import Study from "@/pages/Study";
 import Exam from "@/pages/Exam";
 import Analytics from "@/pages/Analytics";
+import Flashcards from "@/pages/Flashcards";
+import ForgotPassword from "@/pages/ForgotPassword";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
 
@@ -23,11 +25,13 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/uploads" element={<UploadPage />} />
         <Route path="/study" element={<Study />} />
         <Route path="/exam" element={<Exam />} />
         <Route path="/analytics" element={<Analytics />} />
+        <Route path="/flashcards" element={<Flashcards />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>

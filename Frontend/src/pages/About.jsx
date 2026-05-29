@@ -17,8 +17,8 @@ const team = [
   {
     name: "Abdur-Rahim Abdus-Salam",
     role: "Founder & CEO",
-    image: "/team-rahim.png",
-    story: "I watched someone I care about stress over a 200-page PDF three days before a test. She was highlighting paragraphs, making notes on paper, and still felt lost. That is when it clicked: students do not need more study apps. They need a way to turn what they already have; lecture slides, textbooks, handouts into something active. Into questions. Into practice. Into confidence. I started plannig Excel that weekend. Sixty students later, we are just getting started.",
+    image: "/team-rahim.jpg",
+    story: "I watched someone I care about stress over a 200-page PDF three days before a test. She was highlighting paragraphs, making notes on paper, and still felt lost. That is when it clicked: students do not need more study apps. They need a way to turn what they already have — lecture slides, textbooks, handouts — into something active. Into questions. Into practice. Into confidence. I built Excel that weekend. Sixty students later, we are just getting started.",
   },
   {
     name: "Joyce Robson",
@@ -52,7 +52,7 @@ function TeamSlideshow() {
     const timer = setInterval(() => {
       setDirection(1);
       setActive((p) => (p + 1) % team.length);
-    }, 15500);
+    }, 3500);
     return () => clearInterval(timer);
   }, []);
 
@@ -162,10 +162,10 @@ export default function About() {
                 From a problem nobody was solving
               </h2>
               <p className="text-[#737373] leading-relaxed mb-4">
-                It started with a PDF. A lecturer handed out a 200-page document and said "this is your test material." Three days to absorb it all. Highlighting, note-taking, flashcards; none of it was fast enough.
+                It started with a PDF. A lecturer handed out a 200-page document and said "this is your test material." Three days to absorb it all. Highlighting, note-taking, flashcards — none of it was fast enough.
               </p>
               <p className="text-[#737373] leading-relaxed mb-4">
-                That is the moment we realized: students do not need more generic quiz apps. They need a tool that takes what they already have; their slides, their notes, their textbooks , and uses AI to turn it into active practice.
+                That is the moment we realized: students do not need more generic quiz apps. They need a tool that takes what they already have — their slides, their notes, their textbooks — and uses AI to turn it into active practice.
               </p>
               <p className="text-[#737373] leading-relaxed">
                 We built Excel to do exactly that. Upload your material. Our AI generates personalized quizzes. Track what you know and fix what you do not. Sixty students are already using it. We are building for the next thousand.

@@ -143,7 +143,7 @@ export default function Login() {
                 <input type="checkbox" className="w-4 h-4 rounded-md border-[#E5E5E5] accent-[#DC2626]" />
                 <span className="text-sm text-[#525252]">Remember me</span>
               </label>
-              <Link to="#" className="text-sm text-[#DC2626] font-medium hover:underline">Forgot?</Link>
+              <Link to="/forgot-password" className="text-sm text-[#DC2626] font-medium hover:underline">Forgot?</Link>
             </div>
 
             <button type="submit" disabled={loading}
